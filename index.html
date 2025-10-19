@@ -36,6 +36,7 @@
 
 <h2>تست شخصیت رانندگی</h2>
 
+<!-- سوال‌ها -->
 <div class="question">
   <p>۱. وقتی پشت فرمون می‌شینی، بیشتر دنبال چی هستی؟</p>
   <label><input type="radio" name="q1" value="هیجانی"> سرعت و هیجان</label><br>
@@ -52,7 +53,45 @@
   <label><input type="radio" name="q2" value="اقتصادی"> صرفه‌جو و کم‌مصرف</label>
 </div>
 
-<!-- ادامه سوال‌ها رو می‌تونی همین‌طور اضافه کنی -->
+<div class="question">
+  <p>۳. ماشینت چه ویژگی‌هایی داشته باشه؟</p>
+  <label><input type="radio" name="q3" value="هیجانی"> قدرت و سرعت بالا</label><br>
+  <label><input type="radio" name="q3" value="آرام"> ایمنی و کنترل خوب</label><br>
+  <label><input type="radio" name="q3" value="لوکس"> طراحی خاص و راحتی</label><br>
+  <label><input type="radio" name="q3" value="اقتصادی"> مصرف سوخت پایین</label>
+</div>
+
+<div class="question">
+  <p>۴. در سفرهای جاده‌ای، تو معمولاً...</p>
+  <label><input type="radio" name="q4" value="هیجانی"> سریع و پرانرژی رانندگی می‌کنی</label><br>
+  <label><input type="radio" name="q4" value="آرام"> با آرامش و توقف‌های منظم</label><br>
+  <label><input type="radio" name="q4" value="لوکس"> دنبال راحتی و امکانات هستی</label><br>
+  <label><input type="radio" name="q4" value="اقتصادی"> صرفه‌جویی در هزینه و سوخت</label>
+</div>
+
+<div class="question">
+  <p>۵. وقتی ماشینت خراب می‌شه، چه واکنشی داری؟</p>
+  <label><input type="radio" name="q5" value="هیجانی"> سریع دنبال تعمیرکار می‌گردی</label><br>
+  <label><input type="radio" name="q5" value="آرام"> خونسردی و بررسی مرحله‌به‌مرحله</label><br>
+  <label><input type="radio" name="q5" value="لوکس"> تماس با خدمات VIP</label><br>
+  <label><input type="radio" name="q5" value="اقتصادی"> خودت سعی می‌کنی درستش کنی</label>
+</div>
+
+<div class="question">
+  <p>۶. ماشین ایده‌آلت چه رنگیه؟</p>
+  <label><input type="radio" name="q6" value="هیجانی"> قرمز یا مشکی</label><br>
+  <label><input type="radio" name="q6" value="آرام"> سفید یا آبی روشن</label><br>
+  <label><input type="radio" name="q6" value="لوکس"> طلایی یا نقره‌ای</label><br>
+  <label><input type="radio" name="q6" value="اقتصادی"> خاکستری یا بژ</label>
+</div>
+
+<div class="question">
+  <p>۷. ماشینت شبیه کدوم شخصیت معروفه؟</p>
+  <label><input type="radio" name="q7" value="هیجانی"> تام کروز</label><br>
+  <label><input type="radio" name="q7" value="آرام"> مهندس با دقت</label><br>
+  <label><input type="radio" name="q7" value="لوکس"> بازیگر خوش‌استایل</label><br>
+  <label><input type="radio" name="q7" value="اقتصادی"> کارمند ساده‌زیست</label>
+</div>
 
 <button onclick="showResult()">نمایش نتیجه</button>
 
@@ -62,7 +101,7 @@
 function showResult() {
   let counts = { هیجانی: 0, آرام: 0, لوکس: 0, اقتصادی: 0 };
 
-  for (let i = 1; i <= 2; i++) {
+  for (let i = 1; i <= 7; i++) {
     let answer = document.querySelector(input[name="q${i}"]:checked);
     if (!answer) {
       document.getElementById("result").innerText = "لطفاً به همه سوال‌ها پاسخ بده.";
@@ -80,10 +119,12 @@ function showResult() {
     اقتصادی: "Toyota Yaris Hybrid یا Kia Picanto"
   };
 
-  document.getElementById("result").innerText = شخصیت رانندگی شما: ${personality}\nماشین مناسب شما: ${car[personality]};
+  document.getElementById("result").innerHTML = `
+    <strong>شخصیت رانندگی شما:</strong> ${personality}<br>
+    <strong>ماشین مناسب شما:</strong> ${car[personality]}
+  `;
 }
 </script>
 
 </body>
 </html>
-
