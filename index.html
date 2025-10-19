@@ -30,6 +30,11 @@
       border-radius: 8px;
       box-shadow: 0 0 5px #ccc;
     }
+    img {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -119,9 +124,17 @@ function showResult() {
     اقتصادی: "Toyota Yaris Hybrid یا Kia Picanto"
   };
 
+  let images = {
+    هیجانی: "https://images.unsplash.com/photo-1606813909355-8f6e4e2b1c1e",
+    آرام: "https://images.unsplash.com/photo-1583267745175-1f3f3f3f3f3f",
+    لوکس: "https://images.unsplash.com/photo-1617531653456-4b6e4e2b1c1e",
+    اقتصادی: "https://images.unsplash.com/photo-1597004025555-7f6e4e2b1c1e"
+  };
+
   document.getElementById("result").innerHTML = `
     <strong>شخصیت رانندگی شما:</strong> ${personality}<br>
-    <strong>ماشین مناسب شما:</strong> ${car[personality]}
+    <strong>ماشین مناسب شما:</strong> ${car[personality]}<br>
+    <img src="${images[personality]}" alt="ماشین پیشنهادی">
   `;
 }
 </script>
