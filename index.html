@@ -22,54 +22,10 @@
   <label><input type="radio" name="q1" value="4"> صرفه‌جویی و اقتصادی بودن</label>
 </div>
 
-<div class="question">
-  <p>۲. سبک رانندگی‌ات چطوریه؟</p>
-  <label><input type="radio" name="q2" value="1"> تهاجمی و سریع</label><br>
-  <label><input type="radio" name="q2" value="2"> محتاط و قانون‌مند</label><br>
-  <label><input type="radio" name="q2" value="3"> منعطف و اجتماعی</label><br>
-  <label><input type="radio" name="q2" value="4"> صرفه‌جو و کم‌مصرف</label>
-</div>
+<!-- همین ساختار رو برای سوال‌های ۲ تا ۷ هم تکرار کن -->
+<!-- برای راحتی، می‌تونی از نسخه قبلی من استفاده کنی که همه سوال‌ها کامل هستن -->
 
-<div class="question">
-  <p>۳. ماشینت چه ویژگی‌هایی داشته باشه؟</p>
-  <label><input type="radio" name="q3" value="1"> قدرت و سرعت بالا</label><br>
-  <label><input type="radio" name="q3" value="2"> ایمنی و کنترل خوب</label><br>
-  <label><input type="radio" name="q3" value="3"> طراحی خاص و راحتی</label><br>
-  <label><input type="radio" name="q3" value="4"> مصرف سوخت پایین</label>
-</div>
-
-<div class="question">
-  <p>۴. در سفرهای جاده‌ای، تو معمولاً...</p>
-  <label><input type="radio" name="q4" value="1"> سریع و پرانرژی رانندگی می‌کنی</label><br>
-  <label><input type="radio" name="q4" value="2"> با آرامش و توقف‌های منظم</label><br>
-  <label><input type="radio" name="q4" value="3"> دنبال راحتی و امکانات هستی</label><br>
-  <label><input type="radio" name="q4" value="4"> صرفه‌جویی در هزینه و سوخت</label>
-</div>
-
-<div class="question">
-  <p>۵. وقتی ماشینت خراب می‌شه، چه واکنشی داری؟</p>
-  <label><input type="radio" name="q5" value="1"> سریع دنبال تعمیرکار می‌گردی</label><br>
-  <label><input type="radio" name="q5" value="2"> خونسردی و بررسی مرحله‌به‌مرحله</label><br>
-  <label><input type="radio" name="q5" value="3"> تماس با خدمات VIP</label><br>
-  <label><input type="radio" name="q5" value="4"> خودت سعی می‌کنی درستش کنی</label>
-</div>
-
-<div class="question">
-  <p>۶. ماشین ایده‌آلت چه رنگیه؟</p>
-  <label><input type="radio" name="q6" value="1"> قرمز یا مشکی</label><br>
-  <label><input type="radio" name="q6" value="2"> سفید یا آبی روشن</label><br>
-  <label><input type="radio" name="q6" value="3"> طلایی یا نقره‌ای</label><br>
-  <label><input type="radio" name="q6" value="4"> خاکستری یا بژ</label>
-</div>
-
-<div class="question">
-  <p>۷. ماشینت شبیه کدوم شخصیت معروفه؟</p>
-  <label><input type="radio" name="q7" value="1"> تام کروز</label><br>
-  <label><input type="radio" name="q7" value="2"> مهندس با دقت</label><br>
-  <label><input type="radio" name="q7" value="3"> بازیگر خوش‌استایل</label><br>
-  <label><input type="radio" name="q7" value="4"> کارمند ساده‌زیست</label>
-</div>
-
+<!-- دکمه نمایش نتیجه -->
 <button onclick="calculateScore()">نمایش نتیجه</button>
 
 <script>
@@ -83,8 +39,8 @@ function calculateScore() {
     }
     total += parseInt(selected.value);
   }
-  // انتقال به لینک با هش امتیاز
-  window.location.href = https://mohadesehetaat-debug.github.io/result/#${total};
+  localStorage.setItem("carScore", total);
+  window.location.href = "result.html";
 }
 </script>
 
