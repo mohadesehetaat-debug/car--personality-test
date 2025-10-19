@@ -4,75 +4,86 @@
   <meta charset="UTF-8">
   <title>تست شخصیت رانندگی</title>
   <style>
-    body { font-family: sans-serif; direction: rtl; padding: 20px; background-color: #f0f0f0; }
-    .question { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    img { margin-top: 10px; border-radius: 8px; max-width: 100%; }
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .question {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
   </style>
 </head>
 <body>
 
 <h2>تست شخصیت رانندگی</h2>
-<div id="quiz"></div>
+
+<div class="question">
+  <p>۱. وقتی پشت فرمون می‌شینی، بیشتر دنبال چی هستی؟</p>
+  <label><input type="radio" name="q1" value="هیجانی"> سرعت و هیجان</label><br>
+  <label><input type="radio" name="q1" value="آرام"> آرامش و کنترل</label><br>
+  <label><input type="radio" name="q1" value="لوکس"> راحتی و لوکس بودن</label><br>
+  <label><input type="radio" name="q1" value="اقتصادی"> صرفه‌جویی و اقتصادی بودن</label>
+</div>
+
+<div class="question">
+  <p>۲. سبک رانندگی‌ات چطوریه؟</p>
+  <label><input type="radio" name="q2" value="هیجانی"> تهاجمی و سریع</label><br>
+  <label><input type="radio" name="q2" value="آرام"> محتاط و قانون‌مند</label><br>
+  <label><input type="radio" name="q2" value="لوکس"> منعطف و اجتماعی</label><br>
+  <label><input type="radio" name="q2" value="اقتصادی"> صرفه‌جو و کم‌مصرف</label>
+</div>
+
+<!-- ادامه سوال‌ها رو می‌تونی همین‌طور اضافه کنی -->
+
 <button onclick="showResult()">نمایش نتیجه</button>
+
 <div id="result"></div>
 
 <script>
-// سوال‌ها
-const questions = [
-  { q: "وقتی پشت فرمون می‌شینی، بیشتر دنبال چی هستی؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] },
-  { q: "سبک رانندگی‌ات چطوریه؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] },
-  { q: "ماشینت چه ویژگی‌هایی داشته باشه؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] }
-];
-
-// ماشین پیشنهادی
-const car = {
-  هیجانی: "BMW M3 یا Ford Mustang",
-  آرام: "Volkswagen Sedan سفید",
-  لوکس: "Mercedes-Benz E-Class یا Lexus RX",
-  اقتصادی: "Kia Picanto یا Toyota Yaris Hybrid"
-};
-
-// تصویر پیشنهادی
-const images = {
-  هیجانی: "https://images.unsplash.com/photo-1606813909355-8f6e4e2b1c1e",
-  آرام: "https://raw.githubusercontent.com/username/repo/main/images/volkswagen-white.jpg", // 👈 لینک واقعی تصویرت رو اینجا بذار
-  لوکس: "https://images.unsplash.com/photo-1617531653456-4b6e4e2b1c1e",
-  اقتصادی: "https://images.unsplash.com/photo-1597004025555-7f6e4e2b1c1e"
-};
-
-// ساخت فرم
-const quizDiv = document.getElementById("quiz");
-questions.forEach((item, i) => {
-  let html = <div class="question"><p>${item.q}</p>;
-  item.options.forEach(opt => {
-    html += <label><input type="radio" name="q${i}" value="${opt}"> ${opt}</label><br>;
-  });
-  html += </div>;
-  quizDiv.innerHTML += html;
-});
-
-// تحلیل نتیجه
 function showResult() {
   let counts = { هیجانی: 0, آرام: 0, لوکس: 0, اقتصادی: 0 };
-  for (let i = 0; i < questions.length; i++) {
-    let val = document.querySelector(input[name="q${i}"]:checked);
-    if (!val) {
+
+  for (let i = 1; i <= 2; i++) {
+    let answer = document.querySelector(input[name="q${i}"]:checked);
+    if (!answer) {
       document.getElementById("result").innerText = "لطفاً به همه سوال‌ها پاسخ بده.";
       return;
     }
-    counts[val.value]++;
+    counts[answer.value]++;
   }
 
   let personality = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
 
-  document.getElementById("result").innerHTML = `
-    <h3>شخصیت رانندگی شما: ${personality}</h3>
-    <p>ماشین مناسب شما: ${car[personality]}</p>
-    <img src="${images[personality]}" alt="ماشین پیشنهادی">
-  `;
+  let car = {
+    هیجانی: "BMW M3 یا Ford Mustang",
+    آرام: "Volkswagen Sedan سفید",
+    لوکس: "Mercedes-Benz E-Class یا Lexus RX",
+    اقتصادی: "Toyota Yaris Hybrid یا Kia Picanto"
+  };
+
+  document.getElementById("result").innerText = شخصیت رانندگی شما: ${personality}\nماشین مناسب شما: ${car[personality]};
 }
 </script>
 
 </body>
 </html>
+
