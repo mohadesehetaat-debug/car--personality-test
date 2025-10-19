@@ -7,6 +7,7 @@
     body { font-family: sans-serif; direction: rtl; padding: 20px; background-color: #f7f7f7; }
     .question { margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
     button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    img { margin-top: 10px; border-radius: 8px; max-width: 100%; }
   </style>
 </head>
 <body>
@@ -17,6 +18,7 @@
 <h3 id="result"></h3>
 
 <script>
+// سوال‌ها و گزینه‌ها
 const questions = [
   { q: "وقتی پشت فرمون می‌شینی، بیشتر دنبال چی هستی؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] },
   { q: "سبک رانندگی‌ات چطوریه؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] },
@@ -27,6 +29,23 @@ const questions = [
   { q: "ماشینت شبیه کدوم شخصیت معروفه؟", options: ["هیجانی", "آرام", "لوکس", "اقتصادی"] }
 ];
 
+// ماشین پیشنهادی برای هر شخصیت
+const car = {
+  هیجانی: "Ford Mustang GT یا BMW M3",
+  آرام: "Volkswagen Sedan سفید",
+  لوکس: "Mercedes-Benz E-Class یا Lexus RX",
+  اقتصادی: "Kia Picanto یا Toyota Yaris Hybrid"
+};
+
+// تصویر پیشنهادی برای هر شخصیت
+const images = {
+  هیجانی: "https://images.unsplash.com/photo-1606813909355-8f6e4e2b1c1e",
+  آرام: "https://raw.githubusercontent.com/username/repo/main/images/volkswagen-white.jpg", // 👈 لینک تصویر فولکس‌واگن سفید
+  لوکس: "https://images.unsplash.com/photo-1617531653456-4b6e4e2b1c1e",
+  اقتصادی: "https://images.unsplash.com/photo-1597004025555-7f6e4e2b1c1e"
+};
+
+// ساخت فرم تست
 const quizDiv = document.getElementById("quiz");
 questions.forEach((item, index) => {
   let html = <div class="question"><p>${index + 1}. ${item.q}</p>;
@@ -37,6 +56,7 @@ questions.forEach((item, index) => {
   quizDiv.innerHTML += html;
 });
 
+// تحلیل نتیجه و نمایش ماشین + تصویر
 function showResult() {
   let counts = { هیجانی: 0, آرام: 0, لوکس: 0, اقتصادی: 0 };
   for (let i = 0; i < questions.length; i++) {
@@ -50,14 +70,11 @@ function showResult() {
 
   let personality = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
 
-  let car = {
-    هیجانی: "Ford Mustang GT یا BMW M3",
-    آرام: "Toyota Corolla یا Volvo XC60",
-    لوکس: "Mercedes-Benz E-Class یا Lexus RX",
-    اقتصادی: "Kia Picanto یا Toyota Yaris Hybrid"
-  };
-
-  document.getElementById("result").innerText = شخصیت رانندگی شما: ${personality}\nماشین مناسب شما: ${car[personality]};
+  document.getElementById("result").innerHTML = `
+    شخصیت رانندگی شما: <strong>${personality}</strong><br>
+    ماشین مناسب شما: ${car[personality]}<br>
+    <img src="${images[personality]}" alt="ماشین پیشنهادی">
+  `;
 }
 </script>
 
